@@ -50,7 +50,7 @@ int main()
     custom.level += 1;
     
     struct enemy lizard;
-    lizard.name = "lizard";
+    lizard.name = "stinky lizard";
     lizard.hp = 10;
     lizard.stats = 5;
     encounter(lizard,custom);
@@ -68,12 +68,11 @@ int main()
     
     //Sean's Enemy
     struct enemy Jason;
-    Jason.name = "Sub Human Filth";
-    Jason.hp = 9999;
-    Jason.stats = 0;
+    Jason.name = "Ogre";
+    Jason.hp = 15;
+    Jason.stats = 7;
     encounter(Jason, custom);
-    printf("i dunno lol");
-    
+
     if (custom.hp < 1)
     {
         return 0;
