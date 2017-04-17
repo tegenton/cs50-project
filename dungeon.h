@@ -78,13 +78,13 @@ void levelUp(level)
 
 int attack(int monsterHealth, int monsterStat, int strength, int def, int spd, int d20)
 {
-    damage = (d20 / 2) + (strength / 2) - 5;
+    damage = (d20 / 2) + (strength-10)/2;
     printf("You roll a %i, dealing %i damage\n", d20, damage);
     if (monsterStat > spd)
     {
         printf("You missed! The monster was able to dodge, and attacks back!\n");
     
-            if (monsterStat <= strength)
+        if (monsterStat <= strength)
         {
             printf("You are able to block its attack\n"); 
         }
@@ -162,7 +162,7 @@ int counterAttack(struct enemy attacker, struct character defense)
     }
     else
     {
-        printf("You takes %i damage\n", damage - attacker.stats);
+        printf("You take %i damage\n", damage - attacker.stats);
         return(damage - attacker.stats);
     }
     return(0);
