@@ -43,27 +43,27 @@ void levelUp(level)
     {
         printf("You leveled up!\nWhat stat would you like to increase? (str, agi, int, wis, or def) You have %i point left\n", level - i);
         string statToIncrease = get_string();
-        if (strncmp(statToIncrease, "str", 3) == 0)
+        if (strncmp(statToIncrease, "str", 3) == 0 && custom.stat.str < 20)
         {
             custom.stat.str += 1;
             printf("Strength increased!\n");
         }
-        else if (strncmp(statToIncrease, "agi", 3) == 0)
+        else if (strncmp(statToIncrease, "agi", 3) == 0 && custom.stat.agi < 20)
         {
             custom.stat.agi += 1;
             printf("Agility increased!\n");
         }
-        else if (strncmp(statToIncrease, "int", 3) == 0)
+        else if (strncmp(statToIncrease, "int", 3) == 0 && custom.stat.intel < 20)
         {
             custom.stat.intel += 1;
             printf("Intelligence increased!\n");
         }
-        else if (strncmp(statToIncrease, "wis", 3) == 0)
+        else if (strncmp(statToIncrease, "wis", 3) == 0 && custom.stat.wis < 20)
         {
             custom.stat.wis += 1;
             printf("Wisdom increased!\n");
         }
-        else if (strncmp(statToIncrease, "def", 3) == 0)
+        else if (strncmp(statToIncrease, "def", 3) == 0 && custom.stat.def < 20)
         {
             custom.stat.def += 1;
             printf("Defense increased!\n");
@@ -71,7 +71,6 @@ void levelUp(level)
         else
         {
             printf("Invalid input, retry\n");
-            i--;
         }
     }
 };
