@@ -166,7 +166,7 @@ int counterAttack(struct enemy attacker, struct character defense)
     }
     return(0);
 }
-
+    
 //main encounter script
 void encounter(struct enemy current, struct character encountee)
 {
