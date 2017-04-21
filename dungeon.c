@@ -121,6 +121,8 @@ int main()
                 return 0;
             }
             levelUp(5);
+            printf("would you like to try the boss now?\n(g/r)");
+            reee = get_char();
         }
     }
     stupidBoss.stats = 10;
