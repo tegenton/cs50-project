@@ -3,6 +3,12 @@
 
 int damage;
 
+void clear()
+{
+    printf("\033[2J");
+    printf("\033[%d;%dH", 0, 0);
+}
+
 //character stats + info
 struct character
 {
@@ -39,7 +45,7 @@ int diceRoll(int die)
 
 void levelUp(level)
 {
-    for (int i = 0; i < level; i += 2)
+    for (int i = 0; i < level; i++)
     {
         printf("You leveled up!\nWhat stat would you like to increase? (str, agi, int, wis, or def) You have %i point left\n", level - i);
         string statToIncrease = get_string();
@@ -70,16 +76,20 @@ void levelUp(level)
         }
         else
         {
-            printf("Invalid input, retry\n");
+            printf("You cannot level that stat\n");
         }
     }
 };
 
 int attack(int monsterHealth, int monsterStat, int strength, int def, int spd, int d20)
 {
-    damage = (d20 / 2) + (strength-10)/2;
+    damage = (d20 / 2) + (strength)/4;
     printf("You roll a %i, dealing %i damage\n", d20, damage);
-    if (monsterStat > spd)
+    if (damage - monsterStat < 1)
+    {
+        damage = monsterStat;
+    }
+    if (monsterStat > spd && diceRoll(5) > 3)
     {
         printf("You missed! The monster was able to dodge, and attacks back!\n");
     
@@ -120,7 +130,7 @@ int attack(int monsterHealth, int monsterStat, int strength, int def, int spd, i
     }
     else
     {
-        if (damage > 10 && crit == 1)
+        if ((damage > 5 && crit == 1) || (diceRoll(100) < custom.stat.intel * 4))
         {
             printf("Critical hit! The monster takes %i damage.\n", damage*2);
             return(damage * 2);
@@ -175,6 +185,7 @@ void encounter(struct enemy current, struct character encountee)
     {
         printf("Press Enter Key to Continue\n");  
         getchar();
+        clear();
         current.hp -= attack(current.hp, current.stats, encountee.stat.str, encountee.stat.def, encountee.stat.agi, diceRoll(20));
         if (current.hp > 0)
         {
